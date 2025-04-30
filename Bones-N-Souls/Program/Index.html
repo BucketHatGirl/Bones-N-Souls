@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <title>
+    Bones 'N Souls
+  </title>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+  </style>
+  <script src="Res/Cannon.js"></script>
+  <script src="Res/Three.js"></script>
+  <script src="Res/Wasm.js"></script>
+  <script>
+    try {
+      var go = new Go();
+      WebAssembly.instantiateStreaming(fetch("Res/Game.wasm"), go.importObject).then((result) => {go.run(result.instance);});
+    } catch(E) {
+      alert("An error has occured:\n\n" + E + "\n\nPlease reload the game.");
+    };
+  </script>
+</html>
