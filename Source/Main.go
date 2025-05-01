@@ -6,7 +6,7 @@ import (
 var PRESSED js.Value 
 var CONSOLE js.Value = GetGlobal("console")
 func Runtime() {
-	var TIME int
+	var TIME int = 0
 	go func() {
 		for {
 			TIME++
