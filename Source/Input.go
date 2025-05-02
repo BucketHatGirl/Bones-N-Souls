@@ -13,7 +13,7 @@ func RegisterKeyboard() {
 	}))
 }
 
-func PollKeyboard() js.Value {
+func PollKeyboard() string {
 	EVENT := <-EVENTS
-	return js.ValueOf(EVENT.Get("key").String())
+	return EVENT.Get("key").String()
 }

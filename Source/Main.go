@@ -4,10 +4,10 @@ import (
 	"time"
 	"strings"
 )
-var PRESSED interface{} 
+var PRESSED string 
 var CONSOLE js.Value = GetGlobal("console")
 func Runtime() {
-	var VELOCITY [3]float64
+	var VELOCITY []float64
 	var TIME int = 0
 	go func() {
 		for {
@@ -23,7 +23,6 @@ func Runtime() {
 	}()
 	InitRenderer()
 	InitWorld()
-	PRESSED = strings.ToLower(PRESSED.String())	
 	go func() {
 		for {
 			if PRESSED == "w" {
