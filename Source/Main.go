@@ -21,8 +21,7 @@ func Runtime() {
 			PRESSED = PollKeyboard()
 		}
 	}()
-	InitRenderer()
-	InitWorld()
+
 	go func() {
 		for {
 			if PRESSED == "w" {
