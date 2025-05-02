@@ -21,8 +21,6 @@ func Runtime() {
 			PRESSED = PollKeyboard()
 		}
 	}()
-
-	go func() {
 		for {
 			if PRESSED == "w" {
 				if FORWARD_VELOCITY < SPEEDCAP {
@@ -34,7 +32,7 @@ func Runtime() {
 				}
 			}
 		}
-	}()
+
 	go func() {
 		for {
 			if FORWARD_VELOCITY > 0 {
@@ -48,5 +46,4 @@ func Runtime() {
 func main() {
 	GetGlobal("console").Call("log","Bones 'N Souls has been loaded.")
 	Runtime()
-	select{}
 }
