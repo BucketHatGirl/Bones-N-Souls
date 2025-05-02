@@ -1,2 +1,4 @@
-# Bones-N-Souls
-A game to tell a story and raise awareness about abuse
+# Bones 'N Souls
+```
+A fantacy world conjured up by a fairytail book
+```

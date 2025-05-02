@@ -2,10 +2,12 @@ package main
 import (
 	"syscall/js"
 	"time"
+	"strings"
 )
-var PRESSED js.Value 
+var PRESSED interface{} 
 var CONSOLE js.Value = GetGlobal("console")
 func Runtime() {
+	var VELOCITY [3]float64
 	var TIME int = 0
 	go func() {
 		for {
@@ -21,6 +23,20 @@ func Runtime() {
 	}()
 	InitRenderer()
 	InitWorld()
+	PRESSED = strings.ToLower(PRESSED.String())	
+	go func() {
+		for {
+			if PRESSED == "w" {
+				
+			}
+		}
+	}()
+	go func() {
+		for {
+		
+		}
+	}()
+
 }
 
 func main() {
