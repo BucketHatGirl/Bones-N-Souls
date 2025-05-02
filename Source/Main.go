@@ -48,7 +48,6 @@ func Runtime() {
 
 func main() {
 	GetGlobal("console").Call("log","Bones 'N Souls has been loaded.")
-	C := make(chan int)
 	Runtime()
-	<-C
+	select{}
 }
