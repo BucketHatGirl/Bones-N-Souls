@@ -21,6 +21,7 @@ func Runtime() {
 			PRESSED = PollKeyboard()
 		}
 	}()
+	go func() {
 		for {
 			if PRESSED == "w" {
 				if FORWARD_VELOCITY < SPEEDCAP {
@@ -32,7 +33,7 @@ func Runtime() {
 				}
 			}
 		}
-
+	}()
 	go func() {
 		for {
 			if FORWARD_VELOCITY > 0 {
