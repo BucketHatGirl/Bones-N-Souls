@@ -14,7 +14,8 @@ type Renderer struct {
 
 func (R Renderer) NewRenderer() {
 	R.DATA = make(map[string]js.Value, 2)
-	R.DATA["THREE"] = new(Webpage).GetGlobal("THREE")
+	var WEBPAGE = new(Webpage) 
+	R.DATA["THREE"] = WEBPAGE.GetGlobal("THREE")
 	R.DATA["SCENE"] = R.DATA["THREE"].Get("Scene").New()
 	R.DATA["RENDERER"] = R.DATA["THREE"].Get("WebGLRenderer").New()
 }
