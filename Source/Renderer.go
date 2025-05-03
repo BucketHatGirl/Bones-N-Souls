@@ -22,4 +22,7 @@ func (R Renderer) NewCamera(INDEX int, FOV int) {
 	R.CAMERA[INDEX] = R.DATA["THREE"].Get("PerspectiveCamera").New(FOV, WIDTH / HEIGHT, 0.1, 1000)
 }
 
+func (R Renderer) Init() {
+
+}
 

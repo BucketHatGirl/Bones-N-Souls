@@ -8,7 +8,9 @@ type Environment struct {
 }
 
 func (E Environment) NewEnvironment() {
-	E.DATA["CANNON"] = new(Webpage).GetGlobal("CANNON")
+	var WEBPAGE = new(Webpage)
+	E.DATA = make(map[string]js.Value, 2)
+	E.DATA["CANNON"] = WEBPAGE.GetGlobal("CANNON")
 	E.DATA["WORLD"] = E.DATA["CANNON"].Get("World").New()
 }
 
