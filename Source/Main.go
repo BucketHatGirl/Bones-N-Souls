@@ -14,7 +14,9 @@ func main() {
 	RENDERER.NewCamera(0, FOV)
 	go func() {
 		for {
-				
+			if INPUT.EVENTS["w"] {
+				CONSOLE.Call("log", 1)
+			}	
 		}
 	}()
 	select {}
