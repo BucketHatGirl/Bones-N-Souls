@@ -3,17 +3,20 @@ import (
 	"syscall/js"
 )
 
-var EVENTS = make(chan js.Value)
+var EVENTS = make(map[string]bool)
 
 func RegisterKeyboard() {
-	D := GetGlobal("document")
-	D.Call("addEventListener", "keydown", js.FuncOf(func(this js.Value, X []js.Value) interface{} {
-		EVENTS <- X[0]
-		return nil
-	}))
+	D := GetGlobal("window")
+	D.Call("addEventListener", "keydown", js.FuncOf(keyDown))
+	D.Call("addEventListener", "keyup", js.FuncOf(keyUp))
 }
 
-func PollKeyboard() string {
-	EVENT := <-EVENTS
-	return EVENT.Get("key").String()
+func keyDown(this js.Value, D []js.Value) interface{} {
+	EVENTS[D[0].Get("key").String()] = true
+	return nil
+}
+
+func keyUp(this js.Value, U []js.Value) interface{} {
+	EVENTS[U[0].Get("key").String()] = false
+	return nil
 }

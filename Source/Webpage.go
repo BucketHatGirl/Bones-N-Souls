@@ -11,3 +11,6 @@ func SetGlobal(NAME string, VALUE interface{}) {
 	js.Global().Set(NAME, VALUE)
 }
 
+func Evaluate(CODE string) js.Value {
+	return GetGlobal("eval").Invoke(CODE)
+}
