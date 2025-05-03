@@ -21,7 +21,7 @@ func (I Input) KeyUp(this js.Value, KEY []js.Value) interface{} {
 }
 
 func (I Input) RegisterKeyboard() {
-	I.EVENTS = make(map[string]bool)
+	I.EVENTS = make(map[string]bool, 32)
 	var DOCUMENT = new(Webpage).GetGlobal("window")
 	DOCUMENT.Call("addEventListener", "keydown", js.FuncOf(I.KeyDown))
 	DOCUMENT.Call("addEventListener", "keyup", js.FuncOf(I.KeyUp))
