@@ -2,15 +2,16 @@ package main
 import (
 	"syscall/js"
 )
+type Webpage struct {}
 
-func GetGlobal(NAME string) js.Value {
+func (W Webpage) GetGlobal(NAME string) js.Value {
 	return js.Global().Get(NAME)
 }
 
-func SetGlobal(NAME string, VALUE interface{}) {
+func (W Webpage) SetGlobal(NAME string, VALUE interface{}) {
 	js.Global().Set(NAME, VALUE)
 }
 
-func Evaluate(CODE string) js.Value {
-	return GetGlobal("eval").Invoke(CODE)
+func (W Webpage) Evaluate(CODE string) js.Value {
+	return W.GetGlobal("eval").Invoke(CODE)
 }

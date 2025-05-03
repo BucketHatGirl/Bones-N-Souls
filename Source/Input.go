@@ -2,21 +2,24 @@ package main
 import (
 	"syscall/js"
 )
-
-var EVENTS = make(map[string]bool)
-
-func RegisterKeyboard() {
-	D := GetGlobal("window")
-	D.Call("addEventListener", "keydown", js.FuncOf(keyDown))
-	D.Call("addEventListener", "keyup", js.FuncOf(keyUp))
+type Input struct {
+	EVENTS map[string]bool
 }
 
-func keyDown(this js.Value, D []js.Value) interface{} {
-	EVENTS[D[0].Get("key").String()] = true
+func (I Input) KeyDown(this js.Value, KEY []js.Value) interface{} {
+	I.EVENTS[KEY[0].Get("key").String()] = true
 	return nil
 }
 
-func keyUp(this js.Value, U []js.Value) interface{} {
-	EVENTS[U[0].Get("key").String()] = false
+func (I Input) KeyUp(this js.Value, KEY []js.Value) interface{} {
+	I.EVENTS[KEY[0].Get("key").String()] = false
 	return nil
 }
+
+func (I Input) RegisterKeyboard() {
+	W := new(Webpage)
+	D := W.GetGlobal("window")
+	D.Call("addEventListener", "keydown", js.FuncOf(I.KeyDown))
+	D.Call("addEventListener", "keyup", js.FuncOf(I.KeyUp))
+}
+
