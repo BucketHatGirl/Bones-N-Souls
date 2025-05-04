@@ -17,5 +17,10 @@ func main() {
 			}	
 		}
 	}()
+	go func() {
+		for {
+			
+		}
+	}()
 	select {}
 }
