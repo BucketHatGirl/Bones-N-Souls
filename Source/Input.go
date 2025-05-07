@@ -2,28 +2,18 @@ package main
 import (
 	"syscall/js"
 )
+
 type Input struct {
-	EVENTS map[string]bool
-}
+	EVENT []string
+} 
 
-func (I Input) KeyDown(this js.Value, KEY []js.Value) interface{} {
-	if KEY[0].Length() > 0 {
-		I.EVENTS[KEY[0].Get("key").String()] = true
+func (I Input) Poll() []string {
+	I.EVENT = make([]string, 32)
+	var KEYS = js.Global().Call("FetchKeys")
+	if !KEYS.IsUndefined() {
+		for X := 0; X < KEYS.Length(); X++ {
+    	I.EVENT[X] = KEYS.Index(X).String()
+  	}
 	}
-	return nil
+	return I.EVENT
 }
-
-func (I Input) KeyUp(this js.Value, KEY []js.Value) interface{} {
-	if KEY[0].Length() > 0 {
-		I.EVENTS[KEY[0].Get("key").String()] = false
-	}
-	return nil
-}
-
-func (I Input) RegisterKeyboard() {
-	I.EVENTS = make(map[string]bool, 32)
-	var DOCUMENT = new(Webpage).GetGlobal("window")
-	DOCUMENT.Call("addEventListener", "keydown", js.FuncOf(I.KeyDown))
-	DOCUMENT.Call("addEventListener", "keyup", js.FuncOf(I.KeyUp))
-}
-

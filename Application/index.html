@@ -10,11 +10,9 @@
     body { margin: 0; }
     canvas { display: block; }
   </style>
-  <script src="Res/Cannon.js"></script>
-  <script src="Res/Three.js"></script>
-  <script src="Res/Wasm.js"></script>
+  <script src="Assets/Wasm.js"></script>
   <script>
     var go = new Go();
-    WebAssembly.instantiateStreaming(fetch("Res/Game.wasm"), go.importObject).then((result) => {go.run(result.instance);});
+    WebAssembly.instantiateStreaming(fetch("Assets/Game.wasm"), go.importObject).then((result) => {go.run(result.instance);});
   </script>
 </html>

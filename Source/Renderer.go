@@ -13,7 +13,7 @@ type Renderer struct {
 }
 
 func (R Renderer) NewRenderer() {
-	R.DATA = make(map[string]js.Value, 1)
+	R.DATA = make(map[string]js.Value)
 	var WEBPAGE = new(Webpage) 
 	R.DATA["THREE"] = WEBPAGE.GetGlobal("THREE")
 	R.DATA["SCENE"] = R.DATA["THREE"].Get("Scene").New()

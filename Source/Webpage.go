@@ -15,3 +15,4 @@ func (W Webpage) SetGlobal(NAME string, VALUE interface{}) {
 func (W Webpage) Evaluate(CODE string) js.Value {
 	return W.GetGlobal("eval").Invoke(CODE)
 }
+
